@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="colores.css">
+</head>
+<body>
+   
+    <table border="1">
+        <caption><h1>Colores Favoritos</h1></caption>
+        <tbody>
+        <tr>
+            <th>Nombre</th>
+            <th>Color Favorito</th>
+        </tr>
+        <tr>
+            <td class="name">Sebastian</td>
+            <td class="color" id="col1">Verde</td>
+        </tr>
+        <tr>
+            <td class="name">Santiago</td>
+            <td class="color" id="col2">Morado</td>
+        </tr>
+        <tr>
+            <td class="name">Julio</td>
+            <td class="color" id="col3">Rojo</td>
+        </tr>
+        <tr>
+            <td class="name">Otomi</td>
+            <td class="color" id="col4">Cafe</td>
+        </tr>
+         <tr>
+            <td class="name">Abraham</td>
+            <td class="color" id="col5">Amarillo</td>
+        </tr>
+         </tbody>
+    </table>
+</body>
+</html>

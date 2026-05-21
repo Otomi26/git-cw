@@ -1,0 +1,13 @@
+#col1{
+    background-color: green; }
+#col2{
+    background-color: purple; }
+#col3{
+    background-color: red; }
+#col4{
+    background-color: brown; }
+#col5{
+    background-color: yellow; }
+table,th,td{
+        border: 1px solid black;
+    }

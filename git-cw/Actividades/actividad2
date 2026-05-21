@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Otomi Tsugaoka">
+    <meta name="description" content="Actividad 2">
+
+    <title>Actividad 2</title>
+</head>
+<body>
+    <h1>Actividad 2. Explicando código en C</h1>
+
+    <hr>
+
+    <h2>Código en C</h2>
+
+    <pre><code>
+    #include &lt;stdio.h&gt;;
+        int main() {
+            int edad;
+            printf("¿Cuántos años tienes? ");
+            scanf("%d", &edad);
+
+            if (edad >= 18) {
+                printf("Eres mayor de edad.\n");
+            } else {
+                printf("Eres menor de edad.\n");
+            }
+
+            return 0;
+        }
+    </code></pre>
+
+    <h3>Explicación del código</h3>
+    <p>Para iniciar, uno de los elemenos básicos que tiene el código es el <code>#include &lt;stdio.h&gt;</code>, que es nuestra biblioteca.<br>Luego tenemos que abrir el <code>int main</code> para empezar a escribir nuestro código.</p>
+    <p>Con el <code>printf</code> imprimimos un mensaje en la pantalla, en este caso: "¿Cuántos años tienes?".</p>
+    <p>El <code>int edad</code> crea una variable que se llama "edad". Y con el <code>scanf("%d", &edad)</code> leemos el valor ingresado por el usuario (la respuesta de la pregunta) y lo almacenamos en la variable.<br>El "%d" indica que va a recibir números enteros.</p>
+
+    <p>Después están los "if", que son condicionales. En este caso si el valor que obtiene la variable edad es mayor o igual a 18, se ejecuta el <code>printf("Eres mayor de edad.\n");</code>. Y si no, se ejecuta el bloque de código dentro del "else".</p>
+
+    <p>El "\n" nos permite hacer un salto de linea.</p>
+
+    <p>Para cerrar el código está el <code>return 0;</code>, y libera la memoria utilizada.</p>
+
+    <p>Como conclusión, la función de este código es determinar si una persona es mayor o menor edad.</p>
+
+</body>
+</html>
