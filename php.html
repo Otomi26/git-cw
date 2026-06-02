@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Un inicio rápido de PHP para programadores que ya saben C">
+  <meta name="author" content="Luana Alvarez — CW 2026">
+  <title>PHP: Guía Rápida de documentación</title>
+  <style>
+    
+    /* Estilo general de la página */
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        background-color: #f4f6f9;
+        color: #333;
+    }
+    
+    h1 {
+    color: #4F5D95;
+    text-align: center;
+    }
+
+    h2 {
+    margin-top: 25px;   
+    }
+    
+    .intro {
+    text-align: center; color: #666;
+    margin-bottom: 30px;
+    }
+    
+    /* --- BLOQUES COLAPSABLES (CATEGORÍAS PRINCIPALES) --- */
+    details.main-category {
+        background: white;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border-left: 5px solid #4F5D95;
+    }
+    
+    summary {
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+        user-select: none;
+    }
+    
+    details[open].main-category > summary {
+        margin-bottom: 15px;
+        color: #4F5D95;
+    }
+
+    /* --- BLOQUES COLAPSABLES ANIDADOS (SUBSECCIONES) --- */
+    details.sub-category {
+        background: #f8fafc; 
+        margin-left: 20px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        padding: 12px 15px;
+        border-radius: 6px;
+        border-left: 3px solid #4F5D95; /* Borde más fino para subsección */
+        box-shadow: inset 0 0 0 1px #e2e8f0; /* Contorno interno suave */
+    }
+
+    .sub-summary {
+        font-size: 1.05rem;
+        font-weight: bold;
+        color: #4F5D95;
+    }
+
+    details[open].sub-category > .sub-summary {
+        margin-bottom: 12px;
+        color: #3b4a81; 
+    }
+    
+    /* Estilos para el código */
+    pre {
+        background: #272832;
+        color: #f8f8f2;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background: #e0e0e0;
+        padding: 2px 6px;
+        border-radius: 3px;
+    }
+    
+    pre code {
+      background: none;
+      padding: 0;
+      }
+      
+      /* Estilos para las tablas */
+    table {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 1px solid #000000;
+      }
+      
+      table th {
+      background-color: #4F5D95;
+      color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    }
+
+    table td {
+    padding: 5px 2px;
+    color: #24292f;
+    border: 1px solid #000000;
+    vertical-align: top;
+    width: max-width;
+    }
+    
+  </style>
+  
+</head>
+
+<body>
+
+  <h1>PHP</h1>
+  <p class="intro">Ya sabes PHP, solo no sabes que ya lo sabes :)</p>
+  
+   <details class="main-category">
+    <summary>1. Introducción a PHP </summary>
+    
+    <details class="sub-category">
+      <summary class="sub-summary">1.1 ¿Qué es PHP?</summary>
+      <p>
+        <strong>PHP</strong> (acrónimo recursivo para <em>PHP: Hypertext Preprocessor</em>) es un
+        lenguaje de programación de código abierto, interpretado y de uso general, diseñado
+        especialmente para el <strong>desarrollo web del lado del servidor</strong>.
+        Fue creado originalmente por Rasmus Lerdorf en 1994 y hoy en día es el motor de más del 75%
+        de los sitios web del mundo, incluyendo plataformas masivas como Wikipedia, WordPress y los inicios de YouTube.
+      </p>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">1.2 En el mundo Web:  PHP embebido en HTML</summary>
+      <p>
+        A diferencia de lenguajes como C, donde necesitas usar una gran cantidad de comandos como
+        <code>printf()</code> para estructurar una salida de texto, PHP nos permite
+        <strong>incrustar o embeber código directamente dentro de un archivo HTML</strong>
+        utilizando las etiquetas especiales de procesamiento: <code>&lt;?php</code> y <code>?&gt;</code>.
+      </p>
+
+      <p>Veamos un ejemplo:</p>
+
+      <pre>
+        
+        <code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+       &lt;title&gt;Ejemplo Introductorio&lt;/title&gt;
+   &lt;/head>
+
+   &lt;body&gt;
+    
+       &lt;!-- Esto es HTML puro --&gt;
+       &lt;h1&gt;Página de Bienvenida&lt;/h1&gt;
+    
+       &lt;?php
+            // Esto es código PHP ejecutándose dentro del HTML
+            echo "¡Hola, soy un script de PHP!";
+       ?&gt;
+    
+   &lt;/body&gt;
+&lt;/html&gt;
+        </code>
+        
+      </pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">1.3 Ciclo de Vida de una Petición (El Lado del Servidor)</summary>
+      <p>
+          A diferencia de C, donde el binario compilado se ejecuta localmente en la máquina del usuario, PHP opera bajo el modelo de arquitectura <strong>Cliente-Servidor</strong>. En este modelo el flujo de ejecución sigue el orden:
+      </p>
+
+      <pre>
+        
+        <code>
+[   Cliente: Navegador   ] ------- Petición HTTP (URL) ---------> [ Servidor Web ]
+                                                                          |
+                                                                          v
+[ Cliente: Renderiza HTML ] <-- Respuesta HTTP (HTML Puro) <-- [ Intérprete PHP (Zend) ]
+        </code>
+        
+      </pre>
+
+      <p>
+          El proceso se divide en tres etapas de bajo nivel:
+      </p>
+      
+      <ol>
+          <li><strong>Entrada (Request):</strong> El cliente realiza una petición HTTP solicitando un archivo <code>.php</code>.</li>
+          <li><strong>Procesamiento (Parsing):</strong> El servidor web transfiere el archivo al intérprete de PHP. Este ejecuta la lógica, evalúa las estructuras de control y procesa los datos necesarios.</li>
+          <li><strong>Salida (Response):</strong> El intérprete descarta todo el código fuente de PHP y entrega exclusivamente el flujo resultante (generalmente strings de HTML, JSON o binarios de imágenes) al servidor, el cual lo regresa al cliente como una respuesta HTTP estándar.</li>
+      </ol>
+
+      <p>
+        <strong>Nota:</strong> El cliente jamás tiene acceso al código fuente de PHP (las credenciales de bases de datos,
+        algoritmos o consultas SQL se quedan protegidas en el servidor), manteniendo la misma seguridad que un ejecutable en C.
+      </p>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">1.4 Capacidades y aplicaciones</summary>
+      <p>
+        Aunque su aplicación principal es en el desarrollo web (gestión de formularios, generación de contenido dinámico,
+        manejo de cookies, etc...), PHP es sumamente versátil:
+      </p>
+      
+      <ul>
+        <li>   
+      <strong>Multiplataforma y Servidores:</strong> Funciona de forma gratuita en casi todos los sistemas operativos
+      (Linux, Windows, macOS) y servidores web (Apache, Nginx, IIS).
+        </li>
+        <li>   
+      <strong>Soporte Masivo de Bases de Datos:</strong> Permite conexiones nativas y sencillas a sistemas SQL y NoSQL
+      como MySQL, PostgreSQL, SQLite, MariaDB, MongoDB, entre otros.
+        </li>
+        <li>   
+      <strong>Más allá de la Web:</strong> Cuenta con una interfaz de línea de comandos (PHP-CLI) ideal para scripts
+      automatizados (tareas cron), procesamiento de texto e incluso desarrollo de aplicaciones gráficas autónomas
+      (PHP-GTK) o control de drones.
+        </li>
+        <li>   
+      <strong>Paradigmas:</strong> Es multiparadigma entonces nos permite decidir entre programar de manera estructurada
+      (como en C) o programación orientada a objetos (OOP).
+        </li>
+      </ul>
+    </details>
+   </details>
+
+   <details class="main-category">
+     <summary>2. Entorno de Desarrollo (Instalación con XAMPP)</summary>
+     
+     <details class="sub-category">
+       <summary class="sub-summary">2.1 ¿Cómo empiezo a desarrollar con PHP?</summary>
+       <p>
+         Al momento de desarrollar proyectos con lenguaje C, el flujo es directo: el compilador (GCC) genera un archivo binario
+         ejecutable que el Sistema Operativo aloja en la memoria RAM para que el procesador lo ejecute directamente a nivel
+         hardware.
+       </p>
+
+       <p>
+         Sin embargo, el flujo cambia por completo con PHP y la arquitectura web. <strong>PHP</strong> no <strong>se ejecuta</strong> bajo
+         demanda directa del usuario o del sistema operativo local, sino <strong> como respuesta a una petición HTTP remota</strong>.
+         Una computadora común no tiene activas las herramientas para gestionar este protocolo de red ni para comunicarse
+         con un navegador web. Para poder programar y realizar pruebas de manera local,<strong> es por esto que  necesitamos instalar un software
+         que simule en nustra computadora el entorno de un servidor web real</strong>.
+       </p>
+
+       <p>
+         Según la documentación oficial de PHP, para el desarrollo de aplicaciones web (<em>Server-side scripting</em>)
+         se requiere la interacción mandatoria de tres componentes independientes:
+         <ul>
+           <li><strong>El Intérprete (PHP mismo):</strong> El motor que compila, procesa y ejecuta la lógica del código backend.</li>
+           <li><strong>Un Servidor Web:</strong> El software encargado de escuchar la red, recibir las peticiones HTTP y regresar las respuestas.</li>
+           <li><strong>Un Navegador Web:</strong> El cliente encargado de enviar las peticiones y renderizar el resultado final (como Chrome, Firefox o Edge).</li>
+         </ul>
+       </p>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">2.2 ¿Cómo interactuan estos componentes entre sí?</summary>
+       <ol style="line-height: 1.6; margin-bottom: 25px;">
+         <li>
+           <strong>Petición de Entrada (HTTP Request):</strong> El Cliente (Navegador Web) solicita un recurso a través de una URL.
+         Esta petición viaja por la red buscando un puerto abierto en el servidor.
+         </li>
+         
+         <li>
+           <strong>Intercepción del Servidor:</strong> El servidor web escucha la petición en su puerto. Como el sistema
+         operativo no entiende el protocolo HTTP de forma nativa, este servidor web actúa como el receptor y administrador de la red.
+         </li>
+         
+         <li>
+           <strong>Enrutamiento por Interfaz:</strong> Al detectar que el archivo solicitado tiene extensión <code>.php</code>,
+         el servidor web utiliza la interfaz de módulo SAPI (<em>Server Application Programming Interface</em>) o un procesador
+         CGI para desviar el archivo hacia el intérprete, en lugar de enviarlo directamente al cliente.
+         </li>
+         <li>
+           <strong>Procesamiento y Compilación (Zend Engine):</strong> El intérprete de PHP procesa el script, ejecuta la lógica (ciclos,
+         condicionales, peticiones a la base de datos) y compila el resultado final, convirtiendo todo el bloque dinámico en un flujo de
+         datos plano (HTML, JSON o binarios).
+         </li>
+         <li>
+           <strong>Retorno de Salida (HTTP Response):</strong> El intérprete le regresa el flujo de datos limpio a servidor web, que empaqueta ese
+         resultado dentro de una respuesta HTTP y se la envía de vuelta al navegador web del cliente para que lo renderice.
+         </li>
+       </ol>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">2.3 Solución en un solo paso: XAMPP</summary>
+       <p>
+         Configurar el Servidor Web, el Intérprete (PHP) y el Sistema de Base de Datos de forma nativa e independiente requeriría modificar
+         manualmente archivos de configuración del sistema operativo y gestionar permisos de red complejos.
+       </p>
+       <p>
+         Para resolver esto de forma eficiente en el entorno de desarrollo local, utilizaremos <strong>XAMPP</strong>.
+         Este software empaqueta las tres piezas obligatorias en una arquitectura pre-configurada que se ejecuta con un solo clic.
+       </p>
+       <p>
+         XAMPP es un paquete de software libre y gratuito que incluye Apache, MariaDB, PHP y Perl, lo que le permite ofrecer todos los componentes
+         necesarios para desarrollar aplicaciones web con total garantía en un entorno local. De hecho, su nombre es en realidad un acrónimo
+         que refleja su naturaleza multiplataforma (X), y los componentes clave que integra: Apache (A), MariaDB (M), PHP (P) y Perl (P).
+       </p>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">2.4 Instalación de XAMPP por Sistema Operativo</summary>
+       <p>
+         El proceso de despliegue del instalador varía según el sistema operativo debido a la gestión de permisos de seguridad y
+         arquitecturas de procesador. Entonces, según el sistema operativo:
+       </p>
+
+       <p><strong> A) Microsoft Windows:</strong></p>
+       <ol>
+         <li>Descarga el instalador ejecutable (<code>.exe</code>) desde el sitio oficial de Apache Friends.</li>
+         <li>Haz doble clic en el archivo descargado. 
+           <br><em>Nota: Si aparece una alerta de Control de Cuentas de Usuario (UAC), acéptala y continúa.</em>
+         </li>
+         <li>Sigue el asistente visual clásico (Siguiente, Siguiente, Finalizar). El panel de control se instalará por defecto en <code>C:\xampp\</code>.</li>
+       </ol>
+
+       <p><strong> B) GNU/Linux (Ubuntu / Debian / Fedora):</strong></p>
+       <p>
+         Por motivos de seguridad en sistemas basados en Unix, los archivos descargados no poseen permisos de ejecución nativos.
+         Para lanzar el instalador binario (<code>.run</code>), ejecuta los siguientes comandos en tu terminal:
+       </p>
+       
+       <pre>        
+         <code>
+# 1. Muévete al directorio donde descargaste el archivo
+cd ~/Descargas
+     
+# 2. Otorga permisos de ejecución (+x) al instalador binario
+chmod +x xampp-linux-x64-*-installer.run
+     
+# 3. Executa el instalador con privilegios de superusuario (root/sudo)
+ sudo ./xampp-linux-x64-*-installer.run
+         </code>        
+       </pre>
+       
+       <p>
+         Tras ingresar tu contraseña de usuario en la terminal, se desplegará el asistente gráfico para completar la instalación en
+         la ruta protegida del sistema: <code>/opt/lampp/</code>.
+       </p>
+
+       <p><strong>C) Apple macOS:</strong></p>
+       <ol>
+           <li>Descarga el archivo empaquetado (<code>.dmg</code>) desde el sitio oficial.</li>
+           <li>Haz doble clic en el archivo <code>.dmg</code> y dale permisos de ejecución.</li>
+       <li>Sigue el asistente visual clásico (Siguiente, Siguiente, Finalizar). El panel de control se instalará por defecto en <code>C:\xampp\</code>.</li>
+       </ol>
+     </details>
+   </details>
+
+   <details class="main-category">
+     <summary>3. Tu primer programa en PHP</summary>
+     
+     <details class="sub-category">
+       <summary class="sub-summary">3.1 ¿Dónde escribir el código?</summary>
+       <p>
+         A diferencia de C, donde guardas tus archivos <code>.c</code> en cualquier carpeta de tus documentos y los compilas ahí mismo,
+         <strong> en PHP el servidor Apache solo puede ejecutar archivos que estén dentro de su directorio raíz público</strong>.
+       </p>
+       
+       <p> Crea una carpeta llamada <code>PHP/Ejemplos</code> dentro de la ruta que te corresponde según tu sistema operativo:</p>
+       <ul>
+         <li><strong>Windows:</strong> <code>C:\xampp\htdocs\CW-2026\PHP\Ejemplos/</code></li>
+         <li><strong>Linux:</strong> <code>/opt/lampp/htdocs/CW-2026/PHP/Ejemplos/</code></li>
+         <li><strong>macOS:</strong> <code>/Applications/XAMPP/htdocs/CW-2026/PHP/Ejemplos/</code></li>
+       </ul>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">3.2 Creando el archivo</summary>
+       <p>
+         Ya sea usando comandos en terminal o tu editor de código preferido, crea un archivo nuevo en la ruta del punto anterior,
+         y nombralo como <code>holaMundo.php</code>.
+       </p>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">3.3 El código</summary>
+       <p>
+         En PHP no necesitamos importar bibliotecas de entrada/salida ni declarar un método <code>main()</code>.
+         El intérprete ejecuta el archivo de forma secuencial desde que encuentra la etiqueta de apertura, veamos una comparativa:
+       </p>
+
+       <table>
+           <tr>
+               <th>Estructura en C (<em>holaMundo.c</em>)</th>
+               <th>Estructura en PHP (<em>holaMundo.php</em>)</th>
+           </tr>
+           <tr>
+             <td>
+           <pre>           
+             <code>
+#include &lt;stdio.h&gt;
+         
+int main() {
+    printf("¡Hola Mundo desde C!\n");
+    return 0;
+}
+             </code>           
+           </pre>
+             </td>
+         
+             <td>
+           <pre>           
+             <code>
+&lt;?php         
+
+    echo "¡Hola Mundo desde PHP!";
+
+?&gt;</code></pre>
+             </td>
+           </tr>
+       </table>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">3.4 Despligue en el navegador</summary>
+       <p>
+         Para ver el resultado de tu programa, asegúrate de que el módulo <strong>Apache</strong> esté encendido en tu panel de XAMPP.
+         Abre tu navegador web y accede a la siguiente dirección URL:
+       </p>
+       <code>http://localhost/CW-2026/PHP/Ejemplos/holaMundo.php</code>
+     </details>
+
+     <details class="sub-category">
+       <summary class="sub-summary">3.5 ¿Qué pasa cuando usamos localhost?</summary>
+       <p>
+	 Una de las mayores diferencias al programar en PHP respecto a C es que <strong>el código no se ejecuta directamente
+	 en tu pantalla</strong>. PHP vive y muere en un <strong>Servidor Web</strong>. Cuando usas XAMPP en tu computadora,
+	 tu computadora juega un "doble rol": es el cliente que pide la página y el servidor que ejecuta lo necesario.
+       </p>
+       <p>
+	 Para entender cómo se conecta PHP con los conceptos de redes que ya conoces, veamos el viaje que hace tu computadora
+	 cada vez que escribes <code>http://localhost/CW-2026/PHP/Ejemplos/holaMundo.php</code> en el navegador:
+       </p>
+       <ol>
+      <li>
+        <strong>DNS (El Atajo Local):</strong> 
+        En el mapa general, el DNS busca la IP del servidor en el mundo. Pero aquí, al escribir <code>localhost</code>,
+	tu sistema operativo no sale a internet. Tiene un archivo interno que le dice de inmediato:
+	<em>"localhost equivale a la IP 127.0.0.1"</em>. Esta IP especial significa "yo mismo". Es decir el viaje es
+	hacia nosotros mismos.
+      </li>
+      <br>
+      <li>
+        <strong>HTTP (La Orden del Cliente):</strong> 
+        Tu navegador (en su rol de <strong>Cliente</strong>) prepara el mensaje y le pone las etiquetas de petición.
+	Dice: <code>GET /CW-2026/PHP/Ejemplos/holaMundo.php HTTP/1.1</code>. Básicamente, es como la comanda con el
+	platillo que el cliente quiere ordenar.
+      </li>
+      <br>
+      <li>
+        <strong>TCP (El Canal Seguro):</strong> 
+        Para que el mensaje no se pierda ni se rompa, TCP lo empaca de forma segura. En tu computadora, TCP abre un
+	"tubo virtual" interno directo hacia el <strong>Puerto 80</strong>, que es la puerta donde el servidor
+	Apache de XAMPP está sentado esperando peticiones.
+      </li>
+      <br>
+      <li>
+        <strong>IP (La Guía de Ruta):</strong> 
+        Pone las direcciones de origen y destino. En este caso, el origen es tu máquina (<code>127.0.0.1</code>) y el
+	destino también es tu máquina (<code>127.0.0.1</code>). Al ver esto, la arquitectura de red sabe que no debe
+	mandar el paquete a los routers de tu proveedor de internet, sino desviarlo internamente hacia la XAMPP.
+        <br><br>
+        <em>
+	  Aquí es donde Apache recibe el paquete, ve que es un archivo <code>.php</code>, el motor de PHP ejecuta
+	  y genera el HTML final con los <code>echo</code> y <code>printf</code>.</em>
+      </li>
+      <br>
+      <li>
+        <strong>Flujo Físico (El Viaje Interno):</strong> 
+        En internet, los datos viajarían como luz por fibra óptica o electricidad por cables submarinos.
+	En <code>localhost</code>, el flujo físico ocurre a través de los circuitos de tu memoria RAM y tu tarjeta
+	de red virtual. La información se mueve a la velocidad de tu procesador para entregarle la respuesta de
+	vuelta al navegador.
+      </li>
+    </ol>
+     </details>
+   </details>
+
+<details class="main-category">
+  <summary>4. Sintaxis Esencial y Reglas del Lenguaje</summary>
+    
+  <details class="sub-category">
+    <summary class="sub-summary">4.1 Etiquetas de Procesamiento</summary>
+    <p>
+      El intérprete de PHP solo procesa el código que se encuentra entre las etiquetas
+      <code>&lt;?php</code> y <code>?&gt;</code>.
+      Todo lo que esté fuera de ellas se envía al navegador como HTML plano.
+    </p>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">4.2 Escapar de HTML</summary>
+    <p>
+      Puedes abrir y cerrar bloques PHP cuantas veces quieras en un mismo archivo para intercalar lógica y diseño:
+    </p>
+    <pre><code>&lt;h1&gt;Título en HTML&lt;/h1&gt;
+    
+&lt;?php
+    echo "&lt;p&gt;Este párrafo se generó en el servidor.&lt;/p&gt;";
+?&gt;
+    
+&lt;p&gt;Este es otro texto fijo en HTML.&lt;/p>
+
+&lt;?php
+    echo "&lt;p&gt;Este otro se generó en el servidor.&lt;/p&gt;";
+?&gt;</code></pre>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">4.3 ¿Qué onda con el main()?</summary>
+    <p>
+      En C, tu código está obligado a vivir dentro de una función estructurada llamada <code>int main()</code>.
+      Si no existe, el programa simplemente no compila.
+    </p>
+    <p>
+      En <strong>PHP no existe el main()</strong>. PHP es un lenguaje de <em>scripting</em>, lo que significa
+      que el servidor lee el archivo de arriba hacia abajo y va ejecutando cada línea de instrucción de forma
+      secuencial en cuanto encuentra la etiqueta <code>&lt;?php</code>. Tu archivo completo es el flujo principal.
+    </p>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">4.4 Declaración, Asignación y Tipado Dinámico</summary>
+    <p>
+      En C tenías que avisarle al compilador qué caja de memoria querías reservar, es decir, declaración
+      (<code>int x;</code>) y luego, si querías, le dabas un valor, es decir asignación (<code>x = 5;</code>).
+      Además, esa variable se mantenía del mismo tipo durante todo el programa.
+    </p>
+    <p>
+      En <strong>PHP creas y asignas en una sola línea</strong>. No existen palabras clave para tipos de datos
+      primitivos; el tipo se define automáticamente dependiendo de lo que le metas dentro a la variable, y muta
+      si le cambias el valor.
+    </p>
+
+    <table>
+      <tr>
+        <th>¿Cómo era en C? (Tipado Estático)</th>
+        <th>¿Cómo es en PHP? (Tipado Dinámico)</th>
+      </tr>
+      <tr>
+        <td>
+	  <pre><code>
+// 1. Declarar tipo y espacio
+int edad;
+
+// 2. Asignar
+edad = 21; 
+
+// Esto es un error
+// edad = "Veintiuno"; </code></pre>
+        </td>
+        <td>
+	  <pre><code>&lt;?php
+	      
+// Se declara y asigna
+// al mismo tiempo con $
+// Detecta automáticamente que es un entero
+$edad = 21; 
+
+// Es perfectamente válido cambiar
+// el tipo de dato después
+// Detecta que ahora es una cadena
+$edad = "Veintiuno";
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </table>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">4.5 Separación de Instrucciones y Comentarios</summary>
+    <p>
+      Al igual que en C, cada instrucción debe finalizar obligatoriamente con un punto y coma (<code>;</code>).
+      Los comentarios usan la misma sintaxis que ya conoces:
+    </p>
+    <pre><code>&lt;?php
+   // Comentario de una sola línea (Igual que en C)
+
+   /* Comentario de bloque o 
+      múltiples líneas (Igual que en C)
+   */
+?&gt;</code></pre>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">4.6 Salida en pantalla</summary>
+    <p>
+      Así como en C usábamos <code>printf()</code> para imprimir en pantalla, en PHP se usa la instrucción <code>echo</code>. 
+    </p>
+    <p>
+      <strong>La súper ventaja de PHP:</strong> En C necesitabas usar máscaras de formato como <code>%d</code> o <code>%s</code> para concatenar variables. En PHP, si usas <strong>comillas dobles (" ")</strong>, puedes meter tus variables directamente adentro del texto y el intérprete cambiará el nombre de la variable por su valor real (esto se llama <em>interpolación</em>).
+    </p>
+
+    <table>
+      <tr>
+        <th>Impresión compleja en C</th>
+        <th>Impresión directa en PHP</th>
+      </tr>
+      <tr>
+        <td>
+<pre><code>int cajas = 5;
+char item[] = "manzanas";
+
+// Requiere acordarse de los modificadores
+printf("Tengo %d %s.", cajas, item);</code></pre>
+        </td>
+        <td>
+<pre><code>&lt;?php
+$cajas = 5;
+$item = "manzanas";
+
+// Las variables se procesan
+//directo dentro del string
+echo "Tengo $cajas $item."; 
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </table>
+    <p><strong>Nota:</strong> Si usas comillas simples (' '), PHP no leerá las variables y mandará el texto de forma literal (imprimiría: Tengo $cajas $item).</p>
+  </details>
+</details>
+
+   <details class="main-category">
+    <summary>5. Sistema de Tipos </summary>
+    <p>
+        La documentación oficial dicta que cada expresión en PHP posee un tipo nativo integrado dependiendo de su valor. El sistema de tipos de PHP soporta las siguientes estructuras principales (excluyendo objetos y recursos avanzados):
+    </p>
+
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>¿Qué representa en PHP?</th>
+            <th>¿Qué representa en C?</th>
+        </tr>
+        <tr>
+            <td><code>null</code></td>
+            <td>Es ausencia total e intencionada de valor. Representa una variable sin definir o vacía.</td>
+            <td><code>NULL</code> es equivalente a un valor entero <code>0</code>, o a un apuntador que no apunta a ninguna dirección válida.</td>
+        </tr>
+        <tr>
+            <td><code>bool</code></td>
+            <td>Un valor lógico que solo puede adoptar el estado de <code>true</code> o <code>false</code>.</td>
+            <td>En C tenías que usar enteros (1 o 0) para representarlo o importar la biblioteca <code>stdbool.h</code>.</td>
+        </tr>
+        <tr>
+            <td><code>int</code></td>
+            <td>Números enteros.</td>
+            <td>Números enteros.</td>
+        </tr>
+        <tr>
+            <td><code>float</code></td>
+            <td>Números de punto flotante (con decimales). En PHP, un <code>float</code> tiene una precisión equivalente al tipo <code>double</code> de C.</td>
+            <td>Equivale al tipo <code>double</code> de C (precisión doble de 64 bits), ya que el tipo <code>float</code> en C es de precisión simple (32 bits).</td>
+        </tr>
+        <tr>
+            <td><code>string</code></td>
+            <td>Cadenas de texto. PHP gestiona la memoria automáticamente y permite cualquier tamaño dinámico.</td>
+            <td>No existe el tipo string nativo. Se usa un arreglo de caracteres (<code>char[]</code>) o un apuntador (<code>char*</code>) terminado obligatoriamente en <code>\0</code>.</td>
+        </tr>
+        <tr>
+            <td><code>array</code></td>
+            <td>Es un mapa (diccionario) ordenado dinámico. Puede almacenar datos de diferentes tipos (heterogéneo) y asociar llaves numéricas
+          o de texto (strings).</td>
+            <td>Es un arreglo estático, de tamaño fijo y de un solo tipo de dato (homogéneo). No permite almacenar tipos mezclados.</td>
+        </tr>
+    </table>   
+   </details>
+
+   
+<details class="main-category">
+    <summary>6. Variables, Entorno Dinámico y Constantes</summary>
+    
+    <details class="sub-category">
+      <summary class="sub-summary">6.1 El Identificador Único (El signo $)</summary>
+      <p>
+        En PHP, <strong>todas las variables comienzan obligatoriamente con el signo de pesos (<code>$</code>)</strong>.
+        El nombre de la variable sigue las mismas reglas de C (no puede empezar con números), y sigue la <strong>convención de
+        nomenclatura: <em>lowerCamelCase</em></strong>.
+      </p>
+
+      <p>
+        Al igual que en C, PHP es <em>case-sensitive</em>, es decir, sensible a mayúsculas y minúsculas. De tal forma que las variables
+        <code>$control</code> y <code>$Control</code> apuntan a espacios de memoria completamente distintos.
+      </p>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">6.2 El Concepto de Tipado Dinámico (Runtime)</summary>
+      <p>
+        En C, el tipado es estático: declaramos <code>int x;</code> y esa variable solo guardará enteros para siempre.
+        La documentación oficial de PHP define que es un <strong>lenguaje de tipado dinámico</strong>, es decir no especificamos el tipo al crear la variable;
+        y el intérprete determina el tipo de dato <strong>en tiempo de ejecución (runtime)</strong> basándose exclusivamente en el valor que le asignes.
+      </p>
+
+      <p>Sabiendo esto, dado el siguiente código, analízalo y determina qué hace:</p>
+      <pre>
+        <code>
+&lt;?php
+    $var = 200;    // Asigna un entero (int) a $var
+    $Var = "hola"; // Crea una variable distinta (por la V mayúscula) de tipo string
+    $var = "hole"; // Reasigna la primera $var cambiándola dinámicamente a string
+?&gt;
+        </code>
+      </pre>
+    </details>
+
+    <details class="sub-category">
+    <summary class="sub-summary">6.3 Variables Globales</summary>
+    <p>
+      En <strong>C</strong>, una variable declarada fuera de las funciones es global y cualquier función puede
+      acceder a ella automáticamente. 
+      En <strong>PHP</strong> el "ámbito" (scope) es más estricto: una variable global <em>no es visible</em> dentro
+      de una función a menos que se lo indiques explícitamente usando la palabra clave <code>global</code>.
+    </p>
+
+    <table>
+      <tr>
+        <th>En C (Acceso directo)</th>
+        <th>En PHP (Requiere declarar 'global')</th>
+      </tr>
+      <tr>
+        <td>
+<pre><code>int contador = 10;
+
+void funcion() {
+    // Se accede directamente
+    contador++; 
+}</code></pre>
+        </td>
+        <td>
+	  <pre><code>
+&lt;?php
+	      
+$contador = 10;
+
+function miFuncion() {
+    // Debes avisar que usarás la global
+    global $contador; 
+    $contador++;
+}
+
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </table>
+  </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">6.4 Constantes (const)</summary>
+      <p>
+        Las constantes almacenan valores que no pueden cambiar ni borrarse durante la ejecución del programa.
+	A diferencia de las variables, <strong>no llevan el signo de pesos (<code>$</code>)</strong>.
+	Sigue la <strong>convención de nomenclatura: <em>SCREAMING_SNAKE_CASE</em></strong>
+      </p>
+
+      <ul>
+        <li>Solo aceptan valores escalares (<code>bool</code>, <code>int</code>, <code>float</code>, <code>string</code>) y arreglos que contengan solo estos tipos.</li>
+        <li>Para verificar si una constante existe, se usa <code>defined()</code>.</li>
+      </ul>
+
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+
+// 1. Declaración y uso básico
+
+const IMPUESTO = 0.16;
+const CONFIG = ["localhost", "root"];
+echo IMPUESTO; // Imprime: 0.16 (Sin $)
+
+
+// 2. Comprobación y lectura dinámica
+
+const MODO = "Oscuro";
+$buscar = "MODO";
+
+if (defined($buscar)) 
+    echo "Modo definido"; 
+
+
+?&gt;
+      </code></pre>
+    </details>
+    
+   </details>
+
+   <details class="main-category">
+    <summary>7. Operadores</summary>
+    
+    <details class="sub-category">
+      <summary class="sub-summary">7.1 Precedencia de Operadores</summary>
+      <p>
+        Al igual que en C, la precedencia determina el orden de evaluación de los operadores cuando se encuentran juntos en una expresión
+        (por ejemplo, la multiplicación siempre se ejecuta antes que la suma). 
+      </p>
+      <p>
+        En PHP, al igual que en C, si quieres romper la precedencia natural o asegurarte de que una operation se ejecute primero,
+        debes agrupar la expresión estrictamente entre paréntesis <code>( )</code>.
+      </p>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">7.2 Operadores Aritméticos</summary>
+      <p>
+        Son <strong>exactamente iguales a C</strong> (excepto la potenciación). Se utilizan para realizar cálculos matemáticos estándar.
+      </p>
+      <table>
+          <tr>
+              <th>Operador</th>
+              <th>Operación</th>
+              <th>Ejemplo</th>
+          </tr>
+          <tr>
+              <td><code>+</code></td>
+              <td>Adición</td>
+              <td><pre><code>$res = 5 + 7; // res = 12</code></pre></td>         
+          </tr>
+          <tr>
+              <td><code>-</code></td>
+              <td>Sustracción</td>
+              <td><pre><code>$res = 7 - 5; // res = 2</code></pre></td>         
+          </tr>
+          <tr>
+              <td><code>*</code></td>
+              <td>Multiplicación</td>
+              <td><pre><code>$res = 7 * 5; // res = 35</code></pre></td>         
+          </tr>
+          <tr>
+              <td><code>/</code></td>
+              <td>División</td>
+              <td><pre><code>$res = 10 / 5; // res = 2</code></pre></td>         
+          </tr>
+          <tr>
+              <td><code>%</code></td>
+              <td>Módulo (Residuo de la división)</td>
+              <td><pre><code>$res = 10 % 5; // res = 0</code></pre></td>
+          </tr>
+          <tr>
+              <td><code>**</code></td>
+              <td><strong>Exponenciación</strong></td>
+              <td><pre><code>$res = 2 ** 3; // res = 2³ = 8</code></pre></td>
+          </tr>
+      </table>
+    </details>
+
+   <details class="sub-category">
+      <summary class="sub-summary">7.3 Incremento y Decremento</summary>
+      <p>
+          Igual que en C, modifican el valor de la variable sumando o restando una unidad. Recuerda la diferencia entre el prefijo y el sufijo.
+      </p>
+
+      <table>
+        <tr>
+            <th>Notación</th>
+            <th>Operación</th>
+            <th>Efecto</th>
+        </tr>
+        <tr>
+          <td><code>++$var</code></td>
+          <td><strong>Pre-incremento</strong></td>
+          <td>Incrementa uno a <code>$var</code> y luego regresa <code>$var</code> ya incrementado.</td>
+        </tr>
+        <tr>
+          <td><code>$var++</code></td>
+          <td><strong>Post-incremento</strong></td>
+          <td>Regresa <code>$var</code>, luego incrementa uno a <code>$var</code>.</td>
+        </tr>
+        <tr>
+          <td><code>--$var</code></td>
+          <td><strong>Pre-decremento</strong></td>
+          <td>Decrementa uno a <code>$var</code> y luego regresa <code>$var</code> ya decrementado.</td>
+        </tr>
+        <tr>
+          <td><code>$var--</code></td>
+          <td><strong>Post-decremento</strong></td>
+          <td>Regresa <code>$var</code>, luego decrementa uno a <code>$var</code>.</td>
+        </tr>
+      </table>   
+
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+// Pre-incremento vs Post-incremento
+$var = 5;      
+echo ++$var;   // Se incrementa inmediatamente: Imprime 6
+echo $var;     // El valor actual es 6
+
+$var = 5;      
+echo $var++;   // Regresa el valor original: Imprime 5
+echo $var;     // Ahora el valor ya es 6
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">7.4 Operadores de Bits (Bitwise)</summary>
+      <p>
+        PHP así como C tiene la capacidad de manipular bits individuales dentro de un entero. Se usan los mismos símbolos lógicos a nivel de bit:
+      </p>
+      
+      <table>
+        <tr>
+          <th>Notación</th>
+          <th>Nombre</th>
+          <th>Efecto</th>
+        </tr>
+        <tr>
+          <td><code>$a &amp; $b</code></td>
+          <td><strong>AND</strong></td>
+          <td>Mantiene los bits prendidos que están tanto en <code>$a</code> como en <code>$b</code>.</td>
+        </tr>
+        <tr>
+          <td><code>$a | $b</code></td>
+          <td><strong>OR</strong></td>
+          <td>Mantiene los bits prendidos que están en <code>$a</code> o <code>$b</code> o ambos.</td>
+        </tr>
+        <tr>
+          <td><code>$a ^ $b</code></td>
+          <td><strong>XOR</strong></td>
+          <td>Mantiene los bits prendidos que están en <code>$a</code> o <code>$b</code> pero no en los dos.</td>
+        </tr>
+        <tr>
+          <td><code>~ $a</code></td>
+          <td><strong>NOT</strong></td>
+          <td>Invierte todos los bits de <code>$a</code>.</td>
+        </tr>
+        <tr>
+          <td><code>$a &lt;&lt; $b</code></td>
+          <td><strong>Corrimiento a la izquierda</strong></td>
+          <td>Corre <code>$a</code>, <code>$b</code> bits a la izquierda (multiplica por $2^{b}$).</td>
+        </tr>
+        <tr>
+          <td><code>$a &gt;&gt; $b</code></td>
+          <td><strong>Corrimiento a la derecha</strong></td>
+          <td>Corre <code>$a</code>, <code>$b</code> bits a la derecha (divide de forma entera entre $2^{b}$).</td>
+        </tr>
+      </table>
+
+      <p><strong>Ejemplos prácticos en binario:</strong></p>
+      <pre><code>
+$a = 5;  // En binario: 101
+$b = 3;  // En binario: 011
+
+echo ($a &amp; $b);  // AND -> Imprime 1  (001)
+echo ($a | $b);  // OR  -> Imprime 7  (111)
+echo ($a ^ $b);  // XOR -> Imprime 6  (110)
+
+// Corrimientos
+$a = 5; 
+echo ($a &lt;&lt; 2); // Izquierda -> Imprime 20 (10100)
+
+$a = 9; 
+echo ($a &gt;&gt; 2); // Derecha   -> Imprime 2  (0010)
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">7.5 Operadores Lógicos</summary>
+      <p>
+        Al igual que C, PHP usa los mismos operadores lógicos, con una variación en la precedencia de estos dependiendo de cuál se use.
+      </p>
+
+      <table>
+        <tr>
+          <th>Notación</th>
+          <th>Nombre</th>
+          <th>Resultado</th>
+        </tr>
+        <tr>
+          <td><code>$a and $b</code></td>
+          <td><strong>AND (Baja prec.)</strong></td>
+          <td>Regresa verdadero (<code>true</code>) si tanto <code>$a</code> como <code>$b</code> son verdaderos.</td>     
+        </tr>
+        <tr>
+          <td><code>$a xor $b</code></td>
+          <td><strong>XOR (Baja prec.)</strong></td>
+          <td>Regresa verdadero (<code>true</code>) si <code>$a</code> o <code>$b</code> es verdadero, pero no los dos.</td>     
+        </tr>
+        <tr>
+          <td><code>$a or $b</code></td>
+          <td><strong>OR (Baja prec.)</strong></td>
+          <td>Regresa verdadero (<code>true</code>) si <code>$a</code> o <code>$b</code> son verdaderos (o ambos).</td>     
+        </tr>
+        <tr>
+          <td><code>!$a</code></td>
+          <td><strong>NOT</strong></td>
+          <td>Regresa verdadero (<code>true</code>) si <code>$a</code> es falso, y viceversa.</td>    
+        </tr>
+        <tr>
+          <td><code>$a && $b</code></td>
+          <td><strong>AND (Alta prec.)</strong></td>
+          <td>Regresa verdadero (<code>true</code>) si tanto <code>$a</code> como <code>$b</code> son verdaderos.</td>     
+        </tr>
+        <tr>
+          <td><code>$a || $b</code></td>
+          <td><strong>OR (Alta prec.)</strong></td>
+          <td>Regresa verdadero (<code>true</code>) si <code>$a</code> o <code>$b</code> son verdaderos.</td>     
+        </tr>
+      </table>
+
+      <p>
+        <strong>Nota:</strong> Los operadores con símbolo de doble carácter (<code>&&</code> y <code>||</code>) tienen mayor nivel de precedencia matemática que sus contrapartes en formato de texto plano (<code>and</code> y <code>or</code>).
+      </p>
+    </details>
+     
+    <details class="sub-category">
+      <summary class="sub-summary">7.6 Operadores de Comparación</summary>
+      <p>
+        Aquí está el cambio conceptual más fuerte debido al tipado dinámico.
+        Presta especial atención a la diferencia entre comparar solo valores o comparar también tipos.
+      </p>
+      <table>
+          <tr>
+              <th>Operador</th>
+              <th>Significado</th>
+              <th>Descripción</th>
+          </tr>
+          <tr>
+              <td><code>==</code></td>
+              <td>Igualdad débil.</td>
+              <td>Regresa verdadero si son iguales en valor (hace conversión implícita).</td>
+          </tr>
+          <tr>
+              <td><code>===</code></td>
+              <td>Igualdad estricta / fuerte.</td>
+              <td>Regresa verdadero únicamente si son iguales en <strong>valor y tipo de dato</strong>.</td>
+          </tr>
+          <tr>
+              <td><code>!=</code> o <code>&lt;&gt;</code></td>
+              <td>Diferente de (débil).</td>
+              <td>Regresa verdadero si las variables difieren en su valor.</td>
+          </tr>
+          <tr>
+              <td><code>!==</code></td>
+              <td>Diferente de (estricta).</td>
+              <td>Regresa verdadero si difieren en valor <strong>o</strong> difieren en tipo de dato.</td>
+          </tr>
+          <tr>
+              <td><code>&lt;</code></td>
+              <td>Menor que.</td>
+              <td>Regresa verdadero si el primer valor es estrictamente menor al segundo.</td>
+          </tr>
+          <tr>
+              <td><code>&gt;</code></td>
+              <td>Mayor que.</td>
+              <td>Regresa verdadero si el primer valor es estrictamente mayor al segundo.</td>
+          </tr>
+          <tr>
+              <td><code>&lt;=</code></td>
+              <td>Menor o igual que.</td>
+              <td>Regresa verdadero si el primero es menor o igual al segundo.</td>
+          </tr>
+          <tr>
+              <td><code>&gt;=</code></td>
+              <td>Mayor o igual que.</td>
+              <td>Regresa verdadero si el primero es mayor o igual al segundo.</td>
+          </tr>
+          <tr>
+              <td><code>&lt;=&gt;</code></td>
+              <td>Operador Nave Espacial (Spaceship)</td>
+              <td>
+                <p>Regresa <code>0</code> si ambos valores son iguales.</p>
+                <p>Regresa <code>1</code> si el primero es mayor al segundo.</p>
+                <p>Regresa <code>-1</code> si el segundo es mayor al primero.</p>
+                <code>echo 5 &lt;=&gt; 4; // Regresa 1</code>
+              </td>
+          </tr>
+      </table>
+
+      <p>
+        <strong>Nota:</strong> Al ser operadores de comparación todos regresan un booleano (true/false), a excepción de la nave espacial (<code>&lt;=&gt;</code>) que devuelve un entero.
+      </p>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">7.7 Operadores de Asignación Aritmética</summary>
+      <p>
+        Permiten realizar una operación matemática sobre el valor actual de una variable y guardar el nuevo resultado en ella de forma compacta (idéntico a C).
+      </p>
+      <table>
+          <tr>
+              <th>Operador</th>
+              <th>Equivalente</th>
+              <th>Operación</th>
+          </tr>
+          <tr>
+              <td><code>$a += $b</code></td>
+              <td><code>$a = $a + $b</code></td>
+              <td>Suma y asigna. Se añade el valor de <code>$b</code> a <code>$a</code>.</td>
+          </tr>
+          <tr>
+              <td><code>$a -= $b</code></td>
+              <td><code>$a = $a - $b</code></td>
+              <td>Resta y asigna. Se resta el valor de <code>$b</code> a <code>$a</code>.</td>
+          </tr>
+          <tr>
+              <td><code>$a *= $b</code></td>
+              <td><code>$a = $a * $b</code></td>
+              <td>Multiplicación y asigna. Se multiplica <code>$a</code> por <code>$b</code>.</td>
+          </tr>
+          <tr>
+              <td><code>$a /= $b</code></td>
+              <td><code>$a = $a / $b</code></td>
+              <td>División y asigna. Se divide <code>$a</code> entre <code>$b</code>.</td>
+          </tr>
+          <tr>
+              <td><code>$a %= $b</code></td>
+              <td><code>$a = $a % $b</code></td>
+              <td>Módulo y asigna. Obtiene el residuo de dividir <code>$a</code> entre <code>$b</code>.</td>
+          </tr>
+          <tr>
+              <td><code>$a **= $b</code></td>
+              <td><code>$a = $a ** $b</code></td>
+              <td>Exponenciación y asigna. Eleva <code>$a</code> a la potencia de <code>$b</code>.</td>
+          </tr>
+      </table>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">7.8 Operadores de Asignación de Bits</summary>
+      <p>
+          Modifican los bits específicos de un entero en memoria de manera directa (idéntico a C).
+      </p>
+      <table>
+          <tr>
+              <th>Operador</th>
+              <th>Equivalente</th>
+              <th>Operación</th>
+          </tr>
+          <tr>
+              <td><code>$a &amp;= $b</code></td>
+              <td><code>$a = $a &amp; $b</code></td>
+              <td>Operación lógica AND a nivel de bits y asigna.</td>
+          </tr>
+          <tr>
+              <td><code>$a |= $b</code></td>
+              <td><code>$a = $a | $b</code></td>
+              <td>Operación lógica OR a nivel de bits y asigna.</td>
+          </tr>
+          <tr>
+              <td><code>$a ^= $b</code></td>
+              <td><code>$a = $a ^ $b</code></td>
+              <td>Operación lógica XOR (OR exclusivo) a nivel de bits y asigna.</td>
+          </tr>
+          <tr>
+              <td><code>$a &lt;&lt;= $b</code></td>
+              <td><code>$a = $a &lt;&lt; $b</code></td>
+              <td>Desplazamiento de bits a la izquierda <code>$b</code> veces y asigna.</td>
+          </tr>
+          <tr>
+              <td><code>$a &gt;&gt;= $b</code></td>
+              <td><code>$a = $a &gt;&gt; $b</code></td>
+              <td>Desplazamiento de bits a la derecha <code>$b</code> veces y asigna.</td>
+          </tr>
+      </table>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">7.9 Operadores de Asignación de Cadenas (Strings)</summary>
+      <p>
+        No existe un operador nativo en C para esto. PHP usa el punto (<code>.</code>) para concatenar.
+      </p>
+      <table>
+          <tr>
+              <th>Operador</th>
+              <th>Equivalente</th>
+              <th>Operación</th>
+          </tr>
+          <tr>
+              <td><code>$a .= $b</code></td>
+              <td><code>$a = $a . $b</code></td>
+              <td>Concatenación y asignación. Pega el string <code>$b</code> al final del string de <code>$a</code>.</td>
+          </tr>
+      </table>
+    </details>
+   </details>
+
+   <details class="main-category">
+    <summary>8. Estructuras de Control e Importación</summary>
+    <p style="padding: 0 10px;">
+      Al igual que en C, las estructuras de control alteran el flujo lineal de ejecución del código. PHP hereda casi toda su sintaxis de C, pero añade herramientas potentes para el manejo de colecciones dinámicas y la modularización de archivos.
+    </p>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.1 Condicionales (if, else, elseif, ternario)</summary>
+      <p>Evalúan una expresión booleana para decidir qué bloque de código ejecutar. En PHP se introduce la palabra clave <code>elseif</code> (todo junto), aunque también se acepta <code>else if</code> (separado), para evitar anidamientos infinitos de llaves.</p>
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre>
+	<code>
+&lt;?php
+// Ejemplo 1: Condicional básico (idéntico a C)
+
+$edad = 20;
+if ($edad &gt= 18) 
+    echo "Es mayor de edad.";
+else 
+    echo "Es menor de edad.";
+
+
+// Ejemplo 2: Estructura elseif con evaluación en cadena
+
+$calificacion = 85;
+if ($calificacion &gt= 90) 
+    echo "Excelente";
+elseif ($calificacion &gt= 80) 
+    echo "Muy Bien"; // Se ejecuta este bloque
+else 
+    echo "Aprobado";
+
+?&gt
+
+	</code>	
+      </pre>
+      <br>
+      <p>
+	Además de estos condicionales, PHP nos permite hacer uso del <strong>operador ternario</strong> que tiene la siguiente sintáxis
+	<code>(condición) ? valor_si_verdadero : valor_si_falso</code>. Esto es simplemente azúcar sintáctica, pero algunas veces
+	nos permite tener código más legible. Veamos un ejemplo de esto:
+      </p>
+      <pre>
+	<code>
+&lt?php
+	  
+$edad = 20;
+	  
+// Ejemplo con condicional básico if/else
+
+if ($edad &gt= 18) 
+    echo "Es mayor de edad.";
+else 
+    echo "Es menor de edad.";
+
+
+// Ejemplo con operador ternario 
+echo ($edad &gt= 18) ? "Es mayor de edad." :  "Es menor de edad.";
+
+?&gt
+
+	</code>
+      </pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.2 Condicional Múltiple (switch)</summary>
+      <p>Compara una variable o expresión con múltiples casos posibles. <strong>Utiliza una comparación débil (<code>==</code>)</strong>.
+	Recuerda que es fundamental el uso de <code>break</code> al final de cada caso; de lo contrario, la ejecución continuará hacia
+	los casos siguientes de forma automática.</p>
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// Ejemplo 1: Control por casos estándar
+
+$rol = 'editor';
+
+switch ($rol) {
+    case 'admin':
+        echo "Tienes acceso total al sistema.";
+        break;
+    case 'editor':
+        echo "Puedes editar y publicar contenido.";
+        break;
+    case 'usuario':
+        echo "Solo puedes leer el contenido.";
+        break;
+    default:
+        echo "Rol no reconocido. Acceso denegado.";
+        break;
+}
+
+
+// Ejemplo 2: Arrastre intencional de casos (sin break intermediario)
+$nivel = 3;
+
+switch ($nivel) {
+    case 3:
+        echo "Acceso VIP activado. ";             //Sin break pasa al caso 2
+    case 2:
+        echo "+ 100 monedas de bonificación. ";   //Sin break: pasa al caso 1
+    case 1:
+        echo "+ Llave de bronce obtenida.";       //Fin del switch, no necesita break
+}
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.3 Ciclo de pre-prueba (while)</summary>
+      <p>
+	Ejecuta un bloque de instrucciones <strong>mientras</strong> una condición sea verdadera.
+	<strong>La condición se evalúa estrictamente antes de entrar al ciclo</strong>; si es falsa desde el principio, el bloque jamás se ejecutará.
+      </p>
+
+      <p>Primero pide permiso en lugar de pedir perdón.</p>
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// Ejemplo 1: Contador ascendente 
+$contador = 1;
+while ($contador &lt;= 3) {
+    echo "Iteración: $contador \n";
+    $contador++;
+}
+
+
+// Ejemplo 2: Condición de parada 
+$puntos_vida = 100;
+while ($puntos_vida &gt; 0) 
+    $puntos_vida -= 10;  // Simulando daño recibido por tormenta en etapa 3
+echo "El personaje ha caído.";
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.4 Ciclo de post-prueba (do-while)</summary>
+      <p>
+	A diferencia de <code>while</code>, la condición se evalúa <strong>al final</strong> de cada iteración.
+	Esto garantiza que <strong>el bloque de código dentro del ciclo se ejecutará al menos una vez</strong>, sin importar el valor inicial de la condición.
+      </p>
+
+      <p>Primero pide perdón en lugar de pedir permiso (lol).</p>
+      
+      <p><strong>Ejemplo de uso:</strong></p>
+      <pre><code>
+&lt;?php	 
+
+// Ejemplo 1: Simulación de un intento de inicio de sesion con contraseña erronea
+$intentos = 0;
+do {
+    $intentos++;
+    //Verificación de contraseña...
+} while ($intentos &lt; 3);
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.5 Ciclo con contador explícito (for)</summary>
+      <p>
+	Idéntico al de C, es ideal cuando conoces de antemano el número exacto de iteraciones que requieres.
+	Se compone de tres expresiones obligatorias separadas por puntos y comas:
+	<code>for(inicialización; condición; incremento)</code>.
+      </p>
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// Ejemplo 1: Ciclo controlado tradicional
+for ($i = 0; $i &lt; 3; $i++) 
+    echo "Índice actual: $i \n";
+
+
+// Ejemplo 2: Recorrido clásico por tamaño de arreglo 
+$numeros = [10, 20, 30];
+for ($i = 0; $i &lt; count($numeros); $i++) 
+    echo "Valor en posición $i es: " . $numeros[$i] . "\n";
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.6 Ciclo sobre colecciones (foreach)</summary>
+      <p>	
+	<strong>No existe en C.</strong> Es una de las herramientas más potentes y utilizadas de PHP. Está diseñado de
+	forma exclusiva para iterar sobre estructuras complejas como arreglos (arrays) u objetos, abstrayendo por completo
+	el manejo de contadores manuales o índices. Literalmente significa "para cada", y tiene la siguiente sintaxis:
+	<ul>
+	  <li>
+	    <strong><code>foreach (iterable as $valor){...}</code></strong>: Refiere a que por cada elemento en el iterable (algo que
+	    se puede recorrer) se ejecute el código de adentro.	  
+	  </li>
+	  <li>
+	    <strong><code>foreach (iterable as $llave => $valor){...}</code></strong>: Refiere a que por cada elemento en el iterable (algo
+	    que se puede recorrer) se extrae de forma explícita tanto su identificador único (clave o índice) como su contenido asociado,
+	    y se podrá hacer algo con estos en el código dentro del bloque.
+	  </li>
+	</ul>
+	  
+      </p>
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// Ejemplo 1: Lectura directa solo de los valores
+
+$alumnos = ["Ana", "Pedro", "Luis"];
+foreach ($alumnos as $nombre) 
+    echo "Alumno registrado: $nombre \n";
+
+
+// Ejemplo 2: Lectura simultánea de Llave (índice) y Valor
+
+$precios = ["Laptop" =&gt; 800, "Mouse" =&gt; 20, "Teclado" =&gt; 50];
+foreach ($precios as $producto =&gt; $costo) 
+    echo "El artículo $producto cuesta \$$costo dólares. \n";
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.7 Interrupción del flujo (break y continue)</summary>
+      <p>Son modificadores de comportamiento para cualquier ciclo (<code>for</code>, <code>while</code>, <code>foreach</code>)</p>
+      <ul>
+	<li><strong><code>break</code>:</strong> Interrumpe el ciclo por completo saltando inmediatamente a la instrucción siguiente, es decir, termina el ciclo.</li>
+	<li><strong><code>continue</code>:</strong> Interrumpe la iteración actual y avanza directamente a la siguiente iteración del ciclo.</p></li>
+      </ul>      
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// Ejemplo 1: Búsqueda rápida con detención total (break)
+
+$nombres = ["Juan", "María", "Objetivo", "Carlos"];
+foreach ($nombres as $persona) {
+    if ($persona === "Objetivo") {
+        echo "¡Encontrado! Deteniendo el ciclo.\n";
+        break; // Rompe el foreach por completo
+    }
+}
+
+
+// Ejemplo 2: Filtrado u omisión de elementos (continue)
+
+for ($i = 1; $i &lt;= 5; $i++) {
+    if ($i === 3) 
+        continue; // Se salta el echo para el número 3 y pasa al ciclo 4    
+    echo "Número procesado: $i \n";
+}
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.8 Interrupción total y/o regreso de valores (return)</summary>
+      <p>
+	Finaliza inmediatamente la ejecución de la función actual y devuelve el control al bloque de código que la invocó,
+	pudiendo opcionalmente regresar un valor como respuesta. Si se ejecuta en el ámbito global (fuera de una función),
+	termina la ejecución del programa completo.
+      </p>
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+
+// Ejemplo 1: Regreso básico dentro de una función matemática
+
+function sumar($a, $b) {
+    return $a + $b; // Detiene la función y envía el resultado
+}
+$resultado = sumar(5, 10);
+
+
+// Ejemplo 2: Salida temprana condicional
+
+function verificarAcceso($edad) {
+    if ($edad &lt; 18) 
+        return "Acceso denegado."; // Termina la función de inmediato si se cumple
+    return "Bienvenido al sistema.";
+}
+
+?&gt;
+      </code></pre>
+    </details>
+
+    <details class="sub-category">
+      <summary class="sub-summary">8.9 Importar (include y require)</summary>
+      <p>
+	Permiten utilizar el código completo de un archivo externo dentro de otro antes de que el intérprete ejecute el programa.
+	La diferencia crítica radica en cómo gestionan los errores de archivos no encontrados:
+      </p>
+      <ul>
+	<li><strong><code>include</code>:</strong> Emite una advertencia (<em>Warning</em>) y el programa sigue su ejecución.</li>
+	<li>	  
+	  <strong><code>require</code>:</strong> Emite un error fatal (<em>Fatal Error</em>) y detiene el programa por completo instantáneamente
+	  (Es el estándar seguro de la industria para archivos críticos).
+	</li>
+      </ul>      
+      
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// Ejemplo 1: Carga opcional o de componentes visuales independientes
+
+// Si falta el archivo del pie de página, la aplicación web sigue corriendo.
+include 'componentes/footer.php';
+
+
+
+// Ejemplo 2: Carga crítica de configuraciones globales
+
+// Si 'conexion.php' no existe, el programa muere inmediatamente por seguridad.
+require 'conexion.php'; 
+
+?&gt;
+      </code></pre>
+    </details>
+</details>
+
+<details class="main-category">
+      <summary>9. Funciones (Definición y Firma)</summary>
+      <p>
+        Las funciones en PHP aíslan bloques de código reutilizables. A diferencia de C, <strong>no requieren que se les
+	  declare arriba antes de usarlas</strong> y se definen usando la palabra clave <code>function</code> sin especificar
+	obligatoriamente el tipo de dato que regresan o reciben. Sigue la <strong>convención de nomenclatura:
+	  <em>camelCase</em></strong>
+      </p>
+
+      <p><strong>Comparación de Firma (C vs PHP):</strong></p>
+      <ul>
+        <li>	  
+	  <strong>En C:</strong> Requiere tipo del valor de regreso, nombre y tipo por cada parámetro así como nombre
+	  del parametro: <code>int sumar(int a, int b) { return a + b; }</code>	  
+	</li>
+	<br>
+        <li>	  
+	  <strong>En PHP:</strong> Solo usa la palabra clave <code>function</code>.
+	  <code>function sumar($a, $b) { return $a + $b; }</code>	  
+	</li>
+      </ul>
+
+      <p><strong>Reglas Clave:</strong></p>
+      <ul>
+        <li>
+	  Los nombres de las funciones NO son sensibles a mayúsculas y minúsculas, a diferencia de las variables.
+	  <code>miFuncion()</code> y <code>MIFUNCION()</code> son la misma.
+	</li>
+        <li>
+	  Pueden regresar cualquier tipo de dato con <code>return</code> o no regresar nada (equivalente a
+	  <code>void</code> en C).
+	</li>
+        <li>PHP permite asignar <strong>valores por defecto a los parámetros directamente en la firma</strong>.</li>
+      </ul>
+
+      <p><strong>Ejemplos de uso:</strong></p>
+      <pre><code>
+&lt;?php
+	  
+// 1. Función básica sin parámetros ni valor de regreso
+
+function saludarUsuario() {
+    echo "¡Hola, bienvenido de nuevo! \n";
+}
+saludarusuario(); // Funciona igual (No es sensible a mayúsculas)
+
+
+
+// 2. Función con parámetros y valor regreso
+
+function calcularTotal($subtotal, $iva) {
+    $total = $subtotal + ($subtotal * $iva);
+    return $total;
+}
+$pagar = calcularTotal(100, 0.16); // pagar = 116
+
+
+
+// 3. Función con parámetros con valores por defecto (Opcionales)
+
+// Nota: Los parámetros opcionales siempre van al final de la firma.
+function prepararCafe($siguiente, $tipo = "Americano", $azucar = true) {
+    if(!siguiente)
+        return;
+    $mensaje = "Preparando un café $tipo ";
+    $mensaje .= $azucar ? "con azúcar." : "amargo.";
+    return $mensaje;
+}
+
+echo prepararCafe(true);                      // Usa valores por defecto: "Americano con azúcar."
+echo prepararCafe(true, "Capuccino", false);  // Sobrescribe ambos: "Capuccino amargo."
+?&gt;
+      </code></pre>
+</details>
+
+<details class="main-category">
+  <summary>10. Arreglos Indexados</summary>
+  
+  <details class="sub-category">
+    <summary class="sub-summary">10.1 Definición</summary>
+    <p>
+      Recordemos que en <strong>C</strong>, un arreglo es un bloque continuo de memoria de <strong>tamaño fijo</strong> y de tipo <strong>homogéneo</strong> (todos los elementos deben ser del mismo tipo de dato).
+    </p>
+    <p>
+      En <strong>PHP</strong>, los arreglos indexados son dinámicos (crecen solos sin preocuparnos por la memoria) y son <strong>heterogéneos</strong> (pueden guardar un entero, un string y otro arreglo al mismo tiempo). Además, sus posiciones o índices numéricos siempre inician en <code>0</code>.
+    </p>
+
+    <p><strong>Comparativa conceptual:</strong></p>
+    <table>
+      <tr>
+        <th>Característica</th>
+        <th>Arreglos en C</th>
+        <th>Arreglos en PHP</th>
+      </tr>
+      <tr>
+        <td><strong>Tamaño</strong></td>
+        <td>Fijo al declarar (ej: <code>int v[5];</code>)</td>
+        <td>Dinámico (Crece bajo demanda)</td>
+      </tr>
+      <tr>
+        <td><strong>Tipo de dato</strong></td>
+        <td>Homogéneo (Solo un tipo)</td>
+        <td>Heterogéneo (Tipos mezclados)</td>
+      </tr>
+      <tr>
+        <td><strong>Gestión de Memoria</strong></td>
+        <td>Estática o manual (pointers/malloc)</td>
+        <td>Automatizada por el lenguaje</td>
+      </tr>
+    </table>
+
+    <p>Ejemplo de un arreglo heterogéneo válido en PHP:</p>
+    <pre><code>&lt;?php
+// Guarda un string, un entero y un sub-arreglo
+$myArr = array("Volvo", 15, ["manzanas", "platanos"]); 
+?&gt;</code></pre>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">10.2 Vectores (Arreglos Unidimensionales)</summary>
+    <p>Un vector tiene una sola dimensión (una fila de datos). Veamos cómo cambia la sintaxis de declaración y asignación respecto a C:</p>
+
+    <table>
+      <tr>
+        <th>¿Cómo lo hacíamos en C?</th>
+        <th>¿Cómo lo hacemos en PHP?</th>
+      </tr>
+      <tr>
+        <td>
+<pre><code>// Declaración con tamaño fijo
+int numeros[3] = {10, 20, 30};
+
+// Agregar un elemento
+//(¡Error! Fuera de rango)
+// numeros[3] = 40; </code></pre>
+        </td>
+        <td>
+	  <pre><code>&lt;?php
+	      
+// Opción 1: Con Corchetes 
+$numeros = [10, 20, 30];
+
+// Opción 2: Con la función array()
+$numeros = array(10, 20, 30);
+
+// Agregar elementos es dinámico,
+// Se añade al índice [3]
+// de forma automática
+$numeros[] = 40;
+	      
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </table>
+
+    <p><strong>Declaración de Vectores Vacíos:</strong></p>
+    <p>A diferencia de C, donde necesitas inicializar el tamaño, en PHP puedes crear vectores totalmente vacíos para llenarlos progresivamente:</p>
+    <pre><code>&lt;?php
+	
+$datos = [];       // Forma corta
+$datos = array();  // Utilizando array()
+
+// Llenado dinámico secuencial
+$datos[] = "Primer elemento"; // Índice 0
+$datos[] = "Segundo elemento"; // Índice 1
+	
+?&gt;</code></pre>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">10.3 Matrices (Arreglos Multidimensionales)</summary>
+    <p>
+      En <strong>C</strong>, una matriz se entiende matemáticamente como filas y columnas continuas en memoria (ej: <code>int mat[2][3]</code>). 
+      En <strong>PHP</strong>, una matriz es simplemente <strong>un arreglo que contiene otros arreglos dentro</strong>.
+    </p>
+
+    <table>
+      <tr>
+        <th>¿Cómo lo hacíamos en C?</th>
+        <th>¿Cómo lo hacemos en PHP?</th>
+      </tr>
+      <tr>
+        <td>
+<pre><code>// Matriz estática de 2x3
+int matriz[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+
+// Acceso:
+printf("%d", matriz[1][2]);</code></pre>
+        </td>
+        <td>
+	  
+<pre><code>&lt;?php
+// Matriz en PHP (Anidando corchetes)
+$matriz = [
+    [1, 2, 3], // Fila 0
+    [4, 5, 6]  // Fila 1
+];
+
+// Acceso idéntico a C:
+echo $matriz[1][2]; 
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </table>
+
+    <p><strong>Ventaja dinámica de PHP:</strong> Las filas no tienen que medir lo mismo obligatoriamente. Una fila puede tener 2 elementos y otra 5, ya que cada fila es un vector independiente.</p>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">10.4 Funciones útiles para Arreglos Indexados</summary>
+    <p>PHP nos ahorra hacer ciclos <code>for</code> manuales (como hacíamos en C para buscar, contar u ordenar) gracias a sus funciones nativas:</p>
+    
+    <table>
+      <tr>
+        <th>Función</th>
+        <th>Operación</th>
+        <th>Ejemplo en PHP</th>
+      </tr>
+      <tr>
+        <td><code>print_r()</code></td>
+        <td>Imprime de forma legible los elementos y sus índices (ideal para debuguear).</td>
+        <td><pre><code>print_r($miArreglo);</code></pre></td>
+      </tr>
+      <tr>
+        <td><code>array_push()</code></td>
+        <td>Agrega uno o más elementos al <strong>final</strong> del arreglo.</td>
+        <td><pre><code>array_push($miArreglo, "naranja", "uvas");</code></pre></td>         
+      </tr>
+      <tr>
+        <td><code>array_pop()</code></td>
+        <td><strong>Elimina y devuelve</strong> el último elemento del arreglo.</td>
+        <td><pre><code>$ultimo = array_pop($miArreglo);</code></pre></td>         
+      </tr>
+      <tr>
+        <td><code>array_unshift()</code></td>
+        <td>Agrega elementos al <strong>inicio</strong>, moviendo los índices existentes hacia adelante.</td>
+        <td><pre><code>array_unshift($miArreglo, "rojo", "azul");</code></pre></td>   
+      </tr>
+      <tr>
+        <td><code>array_shift()</code></td>
+        <td>Elimina el primer elemento del arreglo y lo devuelve.</td>
+        <td><pre><code>$primerElemento = array_shift($miArreglo);</code></pre></td>         
+      </tr>
+      <tr>
+        <td><code>count()</code></td>
+        <td>Equivalente a calcular el tamaño del arreglo (En C hacíamos <code>sizeof(arr)/sizeof(arr[0])</code>).</td>
+        <td><pre><code>$total = count($miArreglo);</code></pre></td>
+      </tr>
+      <tr>
+        <td><code>in_array()</code></td>
+        <td>Busca si un valor existe dentro del arreglo (devuelve <code>true</code> o <code>false</code>).</td>
+        <td><pre><code>$existe = in_array("Azul", $colores);</code></pre></td>
+      </tr>
+      <tr>
+        <td><code>sort()</code></td>
+        <td>Ordena los elementos en orden ascendente.</td>
+        <td><pre><code>sort($miArreglo);</code></pre></td>
+      </tr>
+    </table>
+  </details>
+</details>
+
+<details class="main-category">
+  <summary>11. Arreglos Asociativos</summary>
+  
+  <details class="sub-category">
+    <summary class="sub-summary">11.1 Definición</summary>
+    <p>
+      En los arreglos indexados (los que ya vimos), las posiciones se identifican con números secuenciales
+      (<code>0, 1, 2...</code>). 
+      Un <strong>arreglo asociativo</strong> nos permite cambiar esos números por <strong>claves o llaves
+      personalizadas (módulos de texto o strings)</strong> para identificar cada valor. Es decir, es como
+      un diccionario, tiene la palabra que lo identifica y lo que significa: <strong>llave => valor</strong>
+      
+    </p>
+    <p>
+      ¿Te acuerdas de los <code>struct</code> en C? Cuando queríamos agrupar
+      datos de un alumno (nombre, edad, promedio), creábamos una estructura y accedíamos mediante el punto
+      (<code>alumno.edad</code>). En PHP, un arreglo asociativo cumple exactamente esa misma función,
+      pero sin necesidad de definir un tipo de dato previo.
+    </p>
+
+    <table>
+      <tr>
+        <th>Concepto</th>
+        <th>En C (Estructuras - struct)</th>
+        <th>En PHP (Arreglos Asociativos)</th>
+      </tr>
+      <tr>
+        <td><strong>Definición</strong></td>
+        <td>Rígida. Se debe declarar el <code>struct</code> antes de usarlo.</td>
+        <td>Flexible. Se crea directamente al guardar los datos.</td>
+      </tr>
+      <tr>
+        <td><strong>Identificador</strong></td>
+        <td>Miembro/Atributo fijo (ej: <code>prod.precio</code>)</td>
+        <td>Clave de tipo string (ej: <code>$prod["precio"]</code>)</td>
+      </tr>
+      <tr>
+        <td><strong>Nuevos campos</strong></td>
+        <td>Imposible añadirlos en tiempo de ejecución.</td>
+        <td>Dinámico. Puedes agregar llaves nuevas cuando quieras.</td>
+      </tr>
+    </table>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">11.2 Declaración y Sintaxis</summary>
+    <p>
+      Para relacionar una <strong>llave</strong> con un <strong>valor</strong> en PHP, utilizamos el 
+      operador de asignación asociativa <code>=&gt;</code> (coloquialmente llamado "flecha gorda").
+    </p>
+
+    <p><strong>Ejemplo comparativo de código:</strong></p>
+    <table>
+      <tr>
+        <th>¿Cómo lo hacíamos con un <em>struct</em> en C?</th>
+        <th>¿Cómo lo hacemos en PHP?</th>
+      </tr>
+      <tr>
+        <td>
+	  <pre><code>// 1. Definir la estructura
+	      
+struct Alumno {
+    char nombre[50];
+    int edad;
+};
+
+// 2. Instanciar y asignar
+struct Alumno a1;
+strcpy(a1.nombre, "Carlos");
+a1.edad = 20;
+
+// Acceso:
+printf("%s", a1.nombre);</code></pre>
+        </td>
+        <td>
+	  <pre><code>&lt;?php
+
+// Declaración directa con Llave => Valor
+$alumno = [
+    "nombre" => "Carlos",
+    "edad" => 20,
+    "aprobado" => true
+];
+
+	      
+// O usando la función array()
+$alumno = array(
+    "nombre" => "Carlos",
+    "edad" => 20
+);
+
+
+// Acceso (Siempre usa comillas en la clave):
+echo $alumno["nombre"]; // Imprime: Carlos
+	      
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </table>
+
+    <p><strong>Modificación y Crecimiento Dinámico:</strong></p>
+    <p>
+      Si quieres modificar un valor o agregar una llave que no existía en la declaración inicial,
+      simplemente la invocas y le asignas el dato:
+    </p>
+    <pre><code>&lt;?php
+	
+$usuario = [
+    "username" => "tec_master"
+];
+
+// Modificar un valor existente
+$usuario["username"] = "dev_php"; 
+
+// Agregar una nueva clave (En C esto rompería el programa)
+$usuario["email"] = "correo@correo.com";
+	
+?&gt;</code></pre>
+  </details>
+
+  <details class="sub-category">
+    <summary class="sub-summary">12.3 Funciones útiles para Arreglos Asociativos</summary>
+    <p>
+      Al no trabajar con índices numéricos, PHP nos provee funciones específicas para administrar, buscar y separar las llaves de los valores:
+    </p>
+    
+    <table>
+      <tr>
+        <th>Función</th>
+        <th>Operación</th>
+        <th>Ejemplo en PHP</th>
+      </tr>
+      <tr>
+        <td><code>array_keys()</code></td>
+        <td>Extrae <strong>solo las llaves</strong> del arreglo y devuelve un arreglo indexado con ellas.</td>
+        <td>
+<pre><code>$claves = array_keys($alumno);
+// Devuelve: ["nombre", "edad", "aprobado"]</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>array_values()</code></td>
+        <td>Extrae <strong>solo los valores</strong>, ignorando las llaves por completo.</td>
+        <td>
+<pre><code>$valores = array_values($alumno);
+// Devuelve: ["Carlos", 20, true]</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>array_key_exists()</code></td>
+        <td>Verifica si una <strong>clave específica</strong> existe dentro del arreglo (devuelve un booleano).</td>
+        <td>
+<pre><code>if (array_key_exists("edad", $alumno)) {
+    echo "La edad está registrada.";
+}</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>asort()</code></td>
+        <td>Ordena el arreglo por sus <strong>valores</strong> en orden ascendente.</td>
+        <td>
+<pre><code>$precios = ["bici" => 500, "casco" => 80];
+asort($precios);
+// "casco" seguirá valiendo 80
+// y estará primero.</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>ksort()</code></td>
+        <td>Ordena el arreglo alfabéticamente por sus <strong>llaves</strong>, no por los valores.</td>
+        <td>
+<pre><code>ksort($alumno); 
+// Ordenará las llaves:
+// "aprobado", "edad", "nombre"</code></pre>
+        </td>
+      </tr>
+    </table>
+  </details>
+</details>
+
+<details class="main-category">
+  <summary>12. Bibliografía</summary>
+  <ul style="padding-left: 20px; line-height: 1.6;">
+    <li>Apache Friends. (s.f.). XAMPP Installers and Downloads. <a href="https://www.apachefriends.org/es/index.html">https://www.apachefriends.org/es/index.html</a></li>
+    <li>PHP: Documentation. (s.f.). <a href="https://www.php.net/docs.php">https://www.php.net/docs.php</a></li>
+    <li>W3Schools. (s.f.). PHP Tutorial. <a href="https://www.w3schools.com/PHP/">https://www.w3schools.com/PHP/</a></li>
+  </ul>
+</details>
+   
+</body>
+</html>
