@@ -35,6 +35,8 @@
     $col;
     $t = 0;
     generaTabla();
+    echo "<html>";
+    echo "<link rel='stylesheet' href='tablaphp1.css'>";
     echo "<table>";
         echo "<caption>Caida Libre</caption>";
         echo"<thead>";
@@ -70,6 +72,6 @@
            
         echo "</tbody>";
     echo "</table>";
-
+    echo "</html>";
 
 ?>

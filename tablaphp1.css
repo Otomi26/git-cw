@@ -1,4 +1,7 @@
-
+caption {
+    font-family:'Times New Roman', Times, serif;
+    font-size:32pt;
+}
 table,th,td{
         border: 1px solid black;
     }
