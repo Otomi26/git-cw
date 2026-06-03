@@ -32,48 +32,31 @@
 
     }
 
+    generaTabla();
+
+    echo "________________________________________________________\n";
+    echo "|Tiempo (seg)\t|Posición final\t|Velocidad final (ft/s)\t|\n";
+    echo "________________________________________________________\n";
+   
     $col;
     $t = 0;
-    generaTabla();
-    echo "<table>";
-        echo "<caption>Caida Libre</caption>";
-        echo"<thead>";
-            echo"<tr>";
-                echo "<th>Tiempo (seg) </th>";
-                echo "<th>Posición final</th>";
-                echo "<th>Velocidad final ft/s </th>";
-            echo "</tr>";
-        echo"</thead>";
-        echo "<tbody>";
-            $tiempo =0.0;
-            for ($t = 1; $t<=10; $t++)
-            {
-                global $tablaTDV;
-                $tiempo=$tiempo+1.0;
-                echo"<tr>";
-                    
-                    if($t<10)
-                    {
-                    for ($col =0; $col < 3; $col ++)
-                    {
-                    
-                        if($col==2)
-                        {
-                            if($tablaTDV[$t][2]>250)
-                                echo "<td>Exceso</td>";
-                            else
-                                echo "<td>".$tablaTDV[$t][2]."</td>";
-                        }
-                        else
-                        echo "<td>".$tablaTDV[$t][$col]."</td>";
-                    }
-                    }
-                echo "</tr>";
-            
-            }   
-           
-        echo "</tbody>";
-    echo "</table>";
+    while ($t<10)
+    {
+        for ($col =0; $col < 3; $col ++)
+        {
+            if($col==2)
+                if($tablaTDV[$t][2]>250)
+                    echo"|\t Exceso ";
+                else
+                    printf("|\t %2.0f\t", $tablaTDV[$t][2]);
+            else
+                printf("|\t %2.0f\t", $tablaTDV[$t][$col]);  
+        }
+        echo "\t|\n";
+        $t++;
+    }
+
+    echo "__________________________________________________________\n";
 
 
 ?>
